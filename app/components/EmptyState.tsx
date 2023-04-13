@@ -5,13 +5,13 @@ import Heading from "./Heading";
 import Button from "./Button";
 
 
-interface EmptyStateProps {
+interface EmptyState {
     title?: string;
     subtitle?: string;
     showReset?: boolean;
 }
 
-const EmptyState: React.FC<EmptyStateProps> = ({
+const EmptyState: React.FC<EmptyState> = ({
     title = 'No exact Matches',
     subtitle = 'Try Changing or modifying your filters',
     showReset 
