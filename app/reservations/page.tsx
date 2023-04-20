@@ -16,7 +16,9 @@ const ReservationsPage = async () => {
                     subtitle="Please login and try again!"
                 />
             </ClientOnly>
-        );
+
+        )
+    }
         const reservations = await getReservations({
             authorId: currentUser.id
         });
@@ -39,9 +41,9 @@ const ReservationsPage = async () => {
                 />
 
             </ClientOnly>
-        )
+        );
 
     }
-};
+
 
 export default ReservationsPage;
