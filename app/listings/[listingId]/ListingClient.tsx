@@ -6,13 +6,14 @@ import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 import { categories } from "@/app/components/navbar/Categories";
 import useLoginModal from "@/app/hooks/useLoginModal";
-import { SafeUser, safeListing } from "@/app/types";
-import { Reservation } from "@prisma/client";
+import { SafeUser, safeListing, safeReservation } from "@/app/types";
+
 import axios from "axios";
 import { differenceInCalendarDays, differenceInDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
+import { Range } from "react-date-range"
 
 const initialDateRange = {
     startDate: new Date(),
@@ -22,7 +23,7 @@ const initialDateRange = {
 
 
 interface ListingClientProps {
-    reservations?: Reservation[];
+    reservations?: safeReservation[];
     listing: safeListing & {
         user: SafeUser
     };
@@ -39,7 +40,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
     const loginModal = useLoginModal();
     const router = useRouter();
 
-    const disabledDates = memo(() => {
+    const disabledDates = useMemo(() => {
         let dates: Date[] = [];
 
         reservations.forEach((reservation) => {
@@ -56,7 +57,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
 
     const [isLoading, setIsLoading] = useState(false);
     const [totalPrice, setTotalprice] = useState(listing.price);
-    const [dateRange, setDateRange] = useState(initialDateRange);
+    const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
     //Function to create reservation
 
@@ -77,7 +78,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 setDateRange(initialDateRange);
                 //Redirect to /trips
 
-                router.refresh();
+                router.push('/trips');
             })
             .catch(() => {
                 toast.error('Something went wrong! Please try again.');
