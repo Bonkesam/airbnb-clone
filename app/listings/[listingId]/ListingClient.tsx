@@ -49,10 +49,9 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 end: new Date(reservation.enddate)
             });
 
-            dates = [... dates, ...range];
-
-            return dates;
-        })
+            dates = [...dates, ...range]; 
+        });
+        return dates;
     }, [reservations]);
 
     
@@ -152,7 +151,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                     ">
                         <ListingReservation 
                             price={listing.price}
-                            totalprice={totalPrice}
+                            totalPrice={totalPrice}
                             onChangeDate={(value) => setDateRange(value)}
                             dateRange={dateRange}
                             onSubmit={onCreateReservation}
