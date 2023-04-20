@@ -17,7 +17,7 @@ export async function POST(
     const {
         listingId,
         startDate,
-        endDate,
+        enddate,
         totalPrice
     } = body;
 
@@ -34,7 +34,7 @@ export async function POST(
                 create: {
                     userId: currentUser.id,
                     startDate,
-                    endDate,
+                    enddate,
                     totalPrice
                 }
             }
