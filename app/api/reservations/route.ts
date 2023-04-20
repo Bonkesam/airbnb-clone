@@ -21,7 +21,7 @@ export async function POST(
         totalPrice
     } = body;
 
-    if (!listingId || !startDate || !endDate || !totalPrice) {
+    if (!listingId || !startDate || !enddate || !totalPrice) {
         return NextResponse.error();
     }
 
