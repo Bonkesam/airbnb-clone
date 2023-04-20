@@ -39,7 +39,7 @@ const PropertiesPage = async () => {
         <ClientOnly>
             <PropertiesClient 
                 listings={listings}
-                currentuser={currentUser}
+                currentUser={currentUser}
             />
         </ClientOnly>
     )
